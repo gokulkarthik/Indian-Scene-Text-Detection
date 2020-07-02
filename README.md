@@ -26,7 +26,8 @@ Indian Signboard Translation  involves 4 modular tasks:
 # Performance
 
 
-**Code:**
+# Code
+
 
 ### Related Links:
 1. [Indian Signboard Translation Project](https://ai4bharat.org/articles/sign-board)
@@ -34,5 +35,6 @@ Indian Signboard Translation  involves 4 modular tasks:
 3. [Indian Scene Text Detection](https://github.com/GokulKarthik/Indian-Scene-Text-Detection)
 4. [Indian Scene Text Classification](https://github.com/GokulKarthik/Indian-Scene-Text-Classification)
 5. [Indian Scene Text Recognition](https://github.com/GokulKarthik/Indian-Scene-Text-Recognition)
+
 
 ### References:
