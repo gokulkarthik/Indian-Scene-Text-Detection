@@ -16,6 +16,18 @@ Indian Signboard Translation  involves 4 modular tasks:
 
 [Indian Scene Text Detecttion Dataset](https://github.com/GokulKarthik/Indian-Scene-Text-Dataset#d1-detection-dataset) is used for training the detection model and evaluation
 
+
+# Model
+
+
+# Training
+
+
+# Performance
+
+
+**Code:**
+
 ### Related Links:
 1. [Indian Signboard Translation Project](https://ai4bharat.org/articles/sign-board)
 2. [Indian Scene Text Dataset](https://github.com/GokulKarthik/Indian-Scene-Text-Dataset)
