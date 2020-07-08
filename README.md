@@ -14,7 +14,13 @@ Indian Signboard Translation  involves 4 modular tasks:
 
 # Dataset
 
-[Indian Scene Text Detecttion Dataset](https://github.com/GokulKarthik/Indian-Scene-Text-Dataset#d1-detection-dataset) is used for training the detection model and evaluation. Axis-Aligned Bounding Box representation of the text boxes are used.
+[Indian Scene Text Detection Dataset](https://github.com/GokulKarthik/Indian-Scene-Text-Dataset#d1-detection-dataset) is used for training the detection model and evaluation. Axis-Aligned Bounding Box representation of the text boxes are used. 
+
+
+# Labels
+The score map for an image is the region with in the shrinked bounding box. The geometry map at a point inside the bounding box represents the distance of that point to the left, top, right and bottom boundaries respectively.
+
+![Sample-X-Y](../master/Images/Sample-X-Y.png)
 
 
 # Model
@@ -36,12 +42,18 @@ Non-Maximal Supression is performed to remove the overlapping bounding boxes wit
 
 For detailed model architecture, check the file [model.py](../master/model.py)
 
+**Sample Input-Output**
+
+![Sample-X-Y-Pred](../master/Images/Sample-X-Y-Pred.png)
+
+
 # Training
 `M1` & `M2` converged to simliar score and geometry losses after training for a specific number of epochs. As `M1`is significantly efficient in memory and computation, it is selected over `M2`. The detection model is trained for 30 epochs. The model weights are saved every 3 epochs and you can find them in the `Models`[../master/Models] directory.
 
 The final hyperparameters can be accessed in [config.yaml](../master/config.yaml)
 
-![Training Loss vs Epoch](../master/Images/Loss-vs-Epoch.png) 
+![Training Loss](../master/Images/Training-Loss.png)
+
 
 # Performance
 The lowest validation loss is observed in epoch 21. Hence, the model [`Models/EAST-Detector-e21.pth`](../master/Models/EAST-Detector-e24.pth) is used to evaluate the detection performance. 
