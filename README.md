@@ -14,19 +14,48 @@ Indian Signboard Translation  involves 4 modular tasks:
 
 # Dataset
 
-[Indian Scene Text Detecttion Dataset](https://github.com/GokulKarthik/Indian-Scene-Text-Dataset#d1-detection-dataset) is used for training the detection model and evaluation
+[Indian Scene Text Detecttion Dataset](https://github.com/GokulKarthik/Indian-Scene-Text-Dataset#d1-detection-dataset) is used for training the detection model and evaluation. Axis-Aligned Bounding Box representation of the text boxes are used.
 
 
 # Model
+The fully convolutional neural network proposed in the paper titled "An Efficient and Accurate Scene Text Detector" ([EAST](https://openaccess.thecvf.com/content_cvpr_2017/papers/Zhou_EAST_An_Efficient_CVPR_2017_paper.pdf)) is used to predict the word instance regions and their geometries. The following two variants of the model are experimented:
 
+1. **`M1`:** Pretrained [VGG-16 net](https://arxiv.org/pdf/1409.1556.pdf) as a feature extractor.
+  It produces output in the reduced dimensions by a factor of 4.
+  * Input Image Shape: [320, 320, 3]
+  * Output Score Map Shape: [80, 80, 1]
+  * Output Geometry Map Shape: [80, 80, 4]
+
+2. **`M2`:** [U-Net](https://arxiv.org/pdf/1505.04597.pdf) for feature extractor and merging.
+  It produces per pixel predictions of text regions and geometries.
+  * Input Image Shape: [320, 320, 3]
+  * Output Score Map Shape: [320, 320, 1]
+  * Output Geometry Map Shape: [320, 320, 4]  
+  
+Non-Maximal Supression is performed to remove the overlapping bounding boxes with the maximum permitted IoU threshold of 0.1.
+
+For detailed model architecture, check the file [model.py](../master/model.py)
 
 # Training
+`M1` & `M2` converged to simliar score and geometry losses after training for a specific number of epochs. As `M1`is significantly efficient in memory and computation, it is selected over `M2`. The detection model is trained for 30 epochs. The model weights are saved every 3 epochs and you can find them in the `Models`[../master/Models] directory.
 
+The final hyperparameters can be accessed in [config.yaml](../master/config.yaml)
+
+![Training Loss vs Epoch](../master/Images/Loss-vs-Epoch.png) 
 
 # Performance
+The lowest validation loss is observed in epoch 21. Hence, the model [`Models/EAST-Detector-e21.pth`](../master/Models/EAST-Detector-e24.pth) is used to evaluate the detection performance. 
 
+**Sample Detections:**
+
+![Sample Detections](../master/Images/Sample-Detections.png) 
 
 # Code
+* Model: [model.py](../master/model.py)
+* Training: [1-Indian-Scene-Text-Detection-Training](../master/1-Indian-Scene-Text-Detection-Training.ipynb)
+* Training Visualisation: [2-MLFlow-Training-Visualisation](../master/2-MLFlow-Training-Visualisation.ipynb)
+* Prediction: [3-Indian-Scene-Text-Detection-Prediction](../master/3-Indian-Scene-Text-Detection-Prediction.ipynb)
+* Evaluation: [4-Indian-Scene-Text-Detection-Evaluation](../master/4-Indian-Scene-Text-Detection-Evaluation.ipynb)
 
 
 ### Related Links:
@@ -38,3 +67,8 @@ Indian Signboard Translation  involves 4 modular tasks:
 
 
 ### References:
+1. https://openaccess.thecvf.com/content_cvpr_2017/papers/Zhou_EAST_An_Efficient_CVPR_2017_paper.pdf
+2. https://arxiv.org/pdf/1505.04597.pdf
+3. https://github.com/liushuchun/EAST.pytorch
+4. https://github.com/GokulKarthik/EAST.pytorch
+5. https://www.pyimagesearch.com/2018/08/20/opencv-text-detection-east-text-detector/
