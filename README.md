@@ -38,7 +38,7 @@ The fully convolutional neural network proposed in the paper titled "An Efficien
   * Output Score Map Shape: [320, 320, 1]
   * Output Geometry Map Shape: [320, 320, 4]  
   
-Non-Maximal Supression is performed to remove the overlapping bounding boxes with the maximum permitted IoU threshold of 0.1.
+Non-Maximal Supression (NMS) is performed to remove the overlapping bounding boxes with the maximum permitted IoU threshold of 0.1.
 
 For detailed model architecture, check the file [model.py](../master/model.py)
 
@@ -56,7 +56,14 @@ The final hyperparameters can be accessed in [config.yaml](../master/config.yaml
 
 
 # Performance
-The lowest validation loss is observed in epoch 21. Hence, the model [`Models/EAST-Detector-e21.pth`](../master/Models/EAST-Detector-e24.pth) is used to evaluate the detection performance. 
+The lowest validation loss is observed in epoch 21. Hence, the model [`Models/EAST-Detector-e21.pth`](../master/Models/EAST-Detector-e24.pth) is used to evaluate the detection performance. In the NMS stage, minimum score threshold is set as 0.8 and maximum permitted IoU threshold is set as 0.1
+
+Minimum IoU threshold for the predicted bounding boxes to be considered as correct is set as 0.75
+|Metric         |Trainset       |Valset       |Testset       |
+|:-------------:|:-------------:|:-----------:|:------------:|
+|Precision      |0.354958       |0.383488     |0.468521      |
+|Recall         |0.339768       |0.416210	    |0.465129      |
+|F1-Score       |0.295901       |0.375142	    |0.416881      |
 
 **Sample Detections:**
 
