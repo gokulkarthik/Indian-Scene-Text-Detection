@@ -59,15 +59,18 @@ The final hyperparameters can be accessed in [config.yaml](../master/config.yaml
 The lowest validation loss is observed in epoch 21. Hence, the model [`Models/EAST-Detector-e21.pth`](../master/Models/EAST-Detector-e24.pth) is used to evaluate the detection performance. In the NMS stage, minimum score threshold is set as 0.8 and maximum permitted IoU threshold is set as 0.1
 
 Minimum IoU threshold for the predicted bounding boxes to be considered as correct is set as 0.75
-|Metric         |Trainset       |Valset       |Testset       |
+|Metric         |Precision      |Recall       |F1-Score      |
 |:-------------:|:-------------:|:-----------:|:------------:|
-|Precision      |0.354958       |0.383488     |0.468521      |
-|Recall         |0.339768       |0.416210	    |0.465129      |
-|F1-Score       |0.295901       |0.375142	    |0.416881      |
+|Trainset       |0.354958       |0.383488     |0.468521      |
+|Valset         |0.339768       |0.416210	    |0.465129      |
+|Testset        |0.295901       |0.375142	    |0.416881      |
 
 **Sample Detections:**
 
-![Sample Detections](../master/Images/Sample-Detections.png) 
+![Sample Detection 1](../master/Images/Sample-1.png) 
+![Sample Detection 2](../master/Images/Sample-2.png) 
+![Sample Detection 3](../master/Images/Sample-3.png) 
+![Sample Detection 4](../master/Images/Sample-4.png) 
 
 # Code
 * Model: [model.py](../master/model.py)
