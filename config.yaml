@@ -1,0 +1,47 @@
+data : 
+    dir : Data/Detection-Big
+    height : 320
+    width : 320
+    channels : 3
+    # Divide AABB channel values by geometry_scale_factor
+    geometry_scale_factor : 64 
+    
+model :
+    name : EAST
+    geometry : AABB
+    with_classification: False
+
+training : 
+    info : ''
+    batch_size : 32
+    
+    score_weights_auto : True
+    score_weights_woc:
+        - 1
+        - 10
+    score_weights_wc:
+        - 1
+        - 10
+        - 10
+        - 10
+        - 10
+    lambda_score: 1
+    lambda_geometry: 1
+    lr : 0.001
+    lr_step_size : 5
+    lr_gamma : 0.5
+    weight_decay: 0.001
+        
+    num_epochs : 30
+    
+prediction :
+    model_path : Models/EAST-Detector-e21.pth
+    device : 'cuda'
+    batch_size : 4
+    score_threshold : 0.8
+    iou_threshold : 0.1
+    
+evaluation : 
+    predictions_dir_name : Annotations-AABB-Pred-EAST-0.8-0.1
+    iou_threshold : 0.75
+    
