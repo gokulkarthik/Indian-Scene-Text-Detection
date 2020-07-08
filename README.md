@@ -48,7 +48,7 @@ For detailed model architecture, check the file [model.py](../master/model.py)
 
 
 # Training
-`M1` & `M2` converged to simliar score and geometry losses after training for a specific number of epochs. As `M1`is significantly efficient in memory and computation, it is selected over `M2`. The detection model is trained for 30 epochs. The model weights are saved every 3 epochs and you can find them in the `Models`[../master/Models] directory.
+`M1` & `M2` converged to simliar score and geometry losses after training for a specific number of epochs. As `M1`is significantly efficient in memory and computation, it is selected over `M2`. The detection model is trained for 30 epochs. The model weights are saved every 3 epochs and you can find them in the [`Models`](../master/Models) directory.
 
 The final hyperparameters can be accessed in [config.yaml](../master/config.yaml)
 
