@@ -14,7 +14,7 @@ Indian Signboard Translation  involves 4 modular tasks:
 
 # Dataset
 
-[Indian Scene Text Detection Dataset](https://github.com/GokulKarthik/Indian-Scene-Text-Dataset#d1-detection-dataset) is used for training the detection model and evaluation. Axis-Aligned Bounding Box representation of the text boxes are used. 
+[Indian Scene Text Detection Dataset](https://github.com/GokulKarthik/Indian-Scene-Text-Dataset#d1-detection-dataset)(`D1-Big` + `D1-English`) is used for training the detection model and evaluation. Axis-Aligned Bounding Box representation of the text boxes are used. 
 
 
 # Labels
@@ -56,14 +56,14 @@ The final hyperparameters can be accessed in [config.yaml](../master/config.yaml
 
 
 # Performance
-The lowest validation loss is observed in epoch 21. Hence, the model [`Models/EAST-Detector-e21.pth`](../master/Models/EAST-Detector-e24.pth) is used to evaluate the detection performance. In the NMS stage, minimum score threshold is set as 0.8 and maximum permitted IoU threshold is set as 0.1
+The lowest validation loss is observed in epoch 12. Hence, the model [`Models/EAST-Detector-e12.pth`](../master/Models/EAST-Detector-e12.pth) is used to evaluate the detection performance. In the NMS stage, minimum score threshold is set as 0.85 and maximum permitted IoU threshold is set as 0.2
 
-Minimum IoU threshold for the predicted bounding boxes to be considered as correct is set as 0.75
+Minimum IoU threshold for the predicted bounding boxes to be considered as correct is set as 0.70
 |Metric         |Precision      |Recall       |F1-Score      |
 |:-------------:|:-------------:|:-----------:|:------------:|
-|Trainset       |0.354958       |0.383488     |0.468521      |
-|Valset         |0.339768       |0.416210	    |0.465129      |
-|Testset        |0.295901       |0.375142	    |0.416881      |
+|Trainset       |0.311847       |0.360114     |0.426558      |
+|Valset         |0.331797       |0.384548	    |0.446315      |
+|Testset        |0.267891       |0.343183	    |0.343183      |
 
 **Sample Detections:**
 
@@ -74,6 +74,7 @@ Minimum IoU threshold for the predicted bounding boxes to be considered as corre
 
 # Code
 * Model: [model.py](../master/model.py)
+* Merging English Data: [0-Merge-English-Data.ipynb](../master/0-Merge-English-Data.ipynb)
 * Training: [1-Indian-Scene-Text-Detection-Training](../master/1-Indian-Scene-Text-Detection-Training.ipynb)
 * Training Visualisation: [2-MLFlow-Training-Visualisation](../master/2-MLFlow-Training-Visualisation.ipynb)
 * Prediction: [3-Indian-Scene-Text-Detection-Prediction](../master/3-Indian-Scene-Text-Detection-Prediction.ipynb)
